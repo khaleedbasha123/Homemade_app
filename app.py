@@ -14,8 +14,10 @@ class Product(db.Model):
     price = db.Column(db.Float)
     image_url = db.Column(db.String(200))
 
-@app.route('/')
+@app.route('/', methods=['GET', 'HEAD'])
 def index():
+    if request.method == 'HEAD':
+        return '', 200  # No content for HEAD request
     products = Product.query.all()
     return render_template('index.html', products=products)
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homemade Store</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Welcome to the Homemade Store</h1>
+    <div class="products">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" />
+            <h3>{{ product.name }}</h3>
+            <p>${{ product.price }}</p>
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('cart') }}">View Cart</a>
+</body>
+</html>
